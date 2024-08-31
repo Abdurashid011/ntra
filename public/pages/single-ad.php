@@ -81,7 +81,7 @@ loadPartials('navbar');
                             <div class="flex justify-between items-center mt-4">
                                 <span class="text-xl font-medium">$ <?= $ad->price;?></span>
 
-                                <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.75 rounded h-6"><?= $ad->status_id;?></span>
+                                <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.75 rounded h-6"><?= $ad->status_name;?></span>
                             </div>
 
                             <ul class="list-none mt-4">
@@ -92,7 +92,7 @@ loadPartials('navbar');
 
                                 <li class="flex justify-between items-center mt-2">
                                     <span class="text-slate-400 text-sm">Filial:</span>
-                                    <span class="font-medium text-sm"><?= $ad->branch_id;?></span>
+                                    <span class="font-medium text-sm"><?= $ad->address;?></span>
                                 </li>
 
                                 <li class="flex justify-between items-center mt-2">

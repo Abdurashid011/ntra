@@ -72,7 +72,7 @@ class Router
     public static function patch($path, $callback, string|null $middleware = null): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (strtolower( $_POST['_method']) === 'patch') {
+            if ($_POST['_method'] === 'patch') {
                 if ((new self())->getResourceId()) {
                 $path = str_replace('{id}', (string) (new self())->getResourceId(), $path);
                 if ($path === parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH)) {

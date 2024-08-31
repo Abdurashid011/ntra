@@ -323,7 +323,6 @@ if (in_array('create', $uri)) {
                                             </div>
                                         </div>
                                     </div>
-
                                     <button type="submit" id="submit"
                                             class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-5">
                                         Saqlash
