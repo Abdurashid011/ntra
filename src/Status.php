@@ -44,4 +44,11 @@ class Status
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
+    public function getStatuses(): false|array
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM `status`");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

@@ -46,4 +46,11 @@ class Branch
         $stmt->bindParam(':id', $id);
         return $stmt->execute();
     }
+
+    public function getBranches(): false|array
+    {
+        $stmt = $this->pdo->prepare("SELECT * FROM branch");
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
 }

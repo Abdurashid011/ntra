@@ -92,7 +92,7 @@ loadPartials('navbar');
 
                                 <li class="flex justify-between items-center mt-2">
                                     <span class="text-slate-400 text-sm">Filial:</span>
-                                    <span class="font-medium text-sm"><?= $ad->address;?></span>
+                                    <span class="font-medium text-sm"><?= $ad->branch_name;?></span>
                                 </li>
 
                                 <li class="flex justify-between items-center mt-2">
@@ -119,9 +119,9 @@ loadPartials('navbar');
                             Get in touch!</h3>
 
                         <div class="mt-6">
-                            <a href="contact.html"
+                            <a href="/ads/delete/<?= $ad->id ?>"
                                class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md"><i
-                                        class="uil uil-phone align-middle me-2"></i> Contact us</a>
+                                        class="uil uil-phone align-middle me-2"></i>Delete</a>
                         </div>
                     </div>
                 </div>

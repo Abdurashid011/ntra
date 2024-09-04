@@ -314,7 +314,7 @@ loadPartials(path: 'header', loadFromPublic: false);
                                             Create Ad
                                         </button>
                                     </a>
-                                </div> 
+                                </div>
                                 <div class="p-6 relative rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
                                     <h5 class="text-xl font-semibold">Mening e'lonlarim :</h5>
 
@@ -359,12 +359,20 @@ loadPartials(path: 'header', loadFromPublic: false);
                                                     </ul>
 
                                                     <ul class="pt-6 flex justify-between items-center list-none">
-                                                        <li>
-                                                            <span class="text-slate-400">Price</span>
-                                                            <p class="text-lg font-medium">$ <?= $ad->price ?></p>
+                                                        <li class="flex items-center">
+                                                            <div>
+                                                                <span class="text-slate-400">Price</span>
+                                                                <p class="text-lg font-medium">$ <?= $ad->price ?></p>
+                                                            </div>
+                                                            <form action="ads/delete/<?=$ad->id?>" method="post" class="ml-4">
+                                                                <input type="hidden" name="_method" value="delete">
+                                                                <button
+                                                                        type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">O'chirish
+                                                                </button>
+                                                            </form>
                                                         </li>
-
                                                     </ul>
+
                                                 </div>
                                             </div><!--end property content-->
                                         <?php

@@ -24,7 +24,8 @@ class Ads
         string $address,
         float  $price,
         int    $rooms,
-    ): false|string {
+    ): false|string
+    {
         $query = "INSERT INTO ads (title, description, user_id, status_id, branch_id, address, price, rooms, created_at) 
                   VALUES (:title, :description, :user_id, :status_id, :branch_id, :address, :price, :rooms, NOW())";
 
@@ -47,14 +48,15 @@ class Ads
         $query = "SELECT ads.*, 
                      ads_image.name AS image, 
                      status.name AS status_name, 
-                     branch.address AS branch_address
+                     branch.address AS branch_address,
+                     branch.name AS branch_name
               FROM ads
               JOIN ads_image ON ads.id = ads_image.ads_id
               JOIN status ON ads.status_id = status.id
               JOIN branch ON ads.branch_id = branch.id
               WHERE ads.id = :id";
 
-        $stmt  = $this->pdo->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
@@ -67,7 +69,7 @@ class Ads
                   FROM ads
                     JOIN branch ON branch.id = ads.branch_id
                     LEFT JOIN ads_image ON ads.id = ads_image.ads_id";
-         return $this->pdo->query($query)->fetchAll();
+        return $this->pdo->query($query)->fetchAll();
     }
 
     public function getUsersAds(int $userId): false|array
@@ -90,7 +92,8 @@ class Ads
         string $address,
         float  $price,
         int    $rooms
-    ) {
+    )
+    {
         $query = "UPDATE ads SET title = :title, description = :description, user_id = :user_id,
                  status_id = :status_id, branch_id = :branch_id, address = :address, 
                  price = :price, rooms = :rooms, updated_at = NOW() WHERE id = :id";
@@ -107,13 +110,18 @@ class Ads
         $stmt->bindParam(':rooms', $rooms);
         $stmt->execute();
 
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetch();
     }
 
     public function deleteAds(int $id): array|false
     {
+        $image = $this->pdo->query("SELECT name FROM ads_image WHERE ads_id = $id")->fetch()->name;
+        if ($image != 'default.jpg') {
+            unlink("assets/images/ads/$image");
+        }
+
         $query = "DELETE FROM ads WHERE id = :id";
-        $stmt  = $this->pdo->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);

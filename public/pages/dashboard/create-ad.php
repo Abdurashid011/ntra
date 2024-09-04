@@ -7,11 +7,10 @@ loadPartials('navbar');
  * @var $ad
  */
 
-
 $uri = explode('/', $_SERVER['REQUEST_URI']);
 if (in_array('create', $uri)) {
     $action = '/ads/create';
-    $ad     = null;
+    $ad = null;
 } else {
     $action = "/ads/update/$ad->id";
 }
@@ -265,7 +264,8 @@ if (in_array('create', $uri)) {
                             </div>
 
                             <div class="rounded-md shadow dark:shadow-gray-700 p-6 bg-white dark:bg-slate-900 h-fit">
-                                <form id="ads-create" action="<?=$action?>" method="post" enctype="multipart/form-data">
+                                <form id="ads-create" action="<?= $action ?>" method="post"
+                                      enctype="multipart/form-data">
                                     <div class="grid grid-cols-12 gap-5">
                                         <div class="col-span-12">
                                             <input type="hidden" name="_method" value="patch">
@@ -278,10 +278,10 @@ if (in_array('create', $uri)) {
                                             <label for="description" class="font-medium">Ta'rif</label>
                                             <div class="form-icon relative mt-2">
                                                 <i class="mdi mdi-arrow-expand-all absolute top-2 start-4 text-green-600"></i>
-                                                <textarea name="description" id="description" class="form-input ps-11"
-                                                          placeholder="E'lon bo'yicha ta'rif...">
+                                                <input name="description" id="description" class="form-input ps-11"
+                                                       placeholder="E'lon bo'yicha ta'rif...">
                                                     <?= $ad?->description ?>
-                                                </textarea>
+                                                </input>
                                             </div>
                                         </div>
 
@@ -292,7 +292,8 @@ if (in_array('create', $uri)) {
                                         </div>
                                         <div class="md:col-span-4 col-span-12 hidden">
                                             <div class="form-icon relative mt-2">
-                                                <input name="status" value="1" type="number" class="form-input ps-11">
+                                                <input name="status_id" value="1" type="number"
+                                                       class="form-input ps-11">
                                             </div>
                                         </div>
 
@@ -322,6 +323,23 @@ if (in_array('create', $uri)) {
                                                        placeholder="Xonalar :" value="<?= $ad?->rooms ?>">
                                             </div>
                                         </div>
+                                        <div class="md:col-span-4 col-span-12">
+                                            <label for="branch" class="font-medium">Fillial</label>
+
+                                            <div class="form-icon relative mt-2">
+                                                <select id="branch" name="branch_id" class="form-input ps-11">
+                                                    <?php
+                                                    /**
+                                                     * @var $branches
+                                                     */
+                                                    foreach ($branches as $branch):
+                                                        echo '<option value="' . $branch->id . '">' . $branch->name . '</option>';
+                                                    endforeach;
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <button type="submit" id="submit"
                                             class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-5">
@@ -352,6 +370,30 @@ if (in_array('create', $uri)) {
         </main>
         <!--End page-content" -->
     </div>
+    <script>
+        const handleChange = () => {
+            const fileUploader = document.querySelector('#input-file');
+            const getFile = fileUploader.files
+            if (getFile.length !== 0) {
+                const uploadedFile = getFile[0];
+                readFile(uploadedFile);
+            }
+        }
+
+        const readFile = (uploadedFile) => {
+            if (uploadedFile) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const parent = document.querySelector('.preview-box');
+                    parent.innerHTML = `<img class="preview-content" src=${reader.result} />`;
+                };
+
+                reader.readAsDataURL(uploadedFile);
+            }
+        };
+    </script>
+    <!-- JAVASCRIPTS -->
+
 
 <?php
 loadPartials(path: 'footer', loadFromPublic: false);

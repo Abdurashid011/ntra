@@ -8,11 +8,13 @@ use Controller\AdController;
 Router::get('/', fn() => loadController('home'));
 
 Router::get('/ads/{id}', fn(int $id) => (new AdController())->show($id));
-Router::get('/ads/create', fn() => loadView('dashboard/create-ad'));
-Router::post('/ads/create', fn() => (new AdController())->create());
+Router::get('/ads/create', fn() => (new AdController())->create());
+Router::post('/ads/create', fn() => (new AdController())->store());
 
-Router::get('/ads/update/{id}', fn(int $id) => (new AdController())->edit($id));
-Router::patch('/ads/update/{id}', fn(int $id) => (new AdController())->update($id));
+Router::get('/ads/update/{id}', fn(int $id) => (new AdController())->update($id));
+Router::patch('/ads/update/{id}', fn(int $id) => (new AdController())->edit($id));
+
+Router::delete('/ads/delete/{id}', fn(int $id) => (new AdController())->delete($id));
 
 // Statuses
 Router::get('/status/create', fn() => loadView('dashboard/create-status'));
