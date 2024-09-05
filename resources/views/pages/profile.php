@@ -308,10 +308,11 @@ loadPartials(path: 'header', loadFromPublic: false);
 
                         <div class="xl:col-span-9 lg:col-span-8 md:col-span-8 mt-6">
                             <div class="grid grid-cols-1 gap-6">
-                                <div class="p-6 relative rounded-md shadow-lg bg-white dark:bg-slate-900">
+                                <div class="p-6 relative rounded-md shadow-lg bg-white dark:bg-slate-900 flex justify-start items-center">
                                     <a href="/ads/create">
-                                        <button class="px-4 py-2 text-white bg-green-500 hover:bg-green-600 rounded-lg shadow-md">
-                                            Create Ad
+                                        <button type="submit" id="submit"
+                                                class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md px-6 py-3 text-base">
+                                            E'lon qo'shish
                                         </button>
                                     </a>
                                 </div>
@@ -330,9 +331,11 @@ loadPartials(path: 'header', loadFromPublic: false);
 
                                                     <div class="absolute top-4 end-4">
                                                         <a href="/ads/update/<?= $ad->id ?>"
-                                                           class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600"><i
-                                                                    class="mdi mdi-heart text-[20px]"></i></a>
+                                                           class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-black dark:text-white">
+                                                            <i class="mdi mdi-pencil text-[20px]"></i>
+                                                        </a>
                                                     </div>
+
                                                 </div>
 
                                                 <div class="p-6">
@@ -364,10 +367,13 @@ loadPartials(path: 'header', loadFromPublic: false);
                                                                 <span class="text-slate-400">Price</span>
                                                                 <p class="text-lg font-medium">$ <?= $ad->price ?></p>
                                                             </div>
-                                                            <form action="ads/delete/<?=$ad->id?>" method="post" class="ml-4">
+                                                        </li>
+                                                        <li>
+                                                            <form action="ads/delete/<?=$ad->id?>" method="post">
                                                                 <input type="hidden" name="_method" value="delete">
-                                                                <button
-                                                                        type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">O'chirish
+                                                                <button type="submit" id="submit"
+                                                                        class="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 text-white rounded-md mt-2 px-3 py-1 text-sm">
+                                                                    O'chirish
                                                                 </button>
                                                             </form>
                                                         </li>
@@ -393,9 +399,9 @@ loadPartials(path: 'header', loadFromPublic: false);
                         <div class="sm:text-start text-center mx-md-2">
                             <p class="mb-0 text-slate-400">©
                                 <script>document.write(new Date().getFullYear())</script>
-                                Hously. Design with <i class="mdi mdi-heart text-red-600"></i> by <a
+                                Hously. Najot ta'lim <i class="mdi mdi-heart text-red-600"></i> by <a
                                         href="https://shreethemes.in/" target="_blank"
-                                        class="text-reset">Shreethemes</a>.
+                                        class="text-reset">PHP Bootcamp N1 </a>.
                             </p>
                         </div><!--end col-->
                     </div><!--end grid-->
