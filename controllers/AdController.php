@@ -77,7 +77,7 @@ class AdController
     {
         $branches = (new Branch())->getBranches();
         $statuses = (new Status())->getStatuses();
-        loadView('dashboard/create-ad', ['ad' => (new \App\Ads())->getAd($id), 'branches.php' => $branches, 'statuses' => $statuses]);
+        loadView('dashboard/create-ad', ['ad' => (new \App\Ads())->getAd($id), 'branches' => $branches, 'statuses' => $statuses]);
     }
 
     public function edit(int $id): void
