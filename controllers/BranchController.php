@@ -6,7 +6,7 @@ namespace Controller;
 
 use App\Branch;
 
-class Branches
+class BranchController
 {
 
     public Branch $branch;
@@ -28,7 +28,7 @@ class Branches
     public function branches(): void
     {
         $branches = ($this->branch)->getBranches();
-        loadView('branches', ['branches' => $branches]);
+        loadView('dashboard/branches', ['branches' => $branches]);
     }
 
 }

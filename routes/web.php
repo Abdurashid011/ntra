@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 use App\Router;
 use Controller\AdController;
-use Controller\Branches;
+use Controller\BranchController;
 
 Router::get('/', fn() => loadController('home'));
 
 Router::get('/branch/create', fn() => loadView('dashboard/create-branch'));
-Router::post('/branch/create', fn() => (new Branches())->create());
-Router::get('/branches', fn() => (new Branches())->branches());
+Router::post('/branch/create', fn() => (new BranchController())->create());
+Router::get('/branches', fn() => (new BranchController())->branches());
 
 Router::get('/ads/{id}', fn(int $id) => (new AdController())->show($id));
 Router::get('/ads/create', fn() => (new AdController())->create());
