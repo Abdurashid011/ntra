@@ -8,6 +8,8 @@ use PDO;
 
 class Image
 {
+    const string DEFAULT_IMAGE = 'default.jpg';
+    const string DEFAULT_PATH  = '/assets/images/ads/';
     private PDO $pdo;
 
     public function __construct()
@@ -73,5 +75,12 @@ class Image
         $stmt->bindParam(':id', $id);
         $stmt->bindParam(':name', $name);
         return $stmt->execute();
+    }
+
+    public static function show(string|null $file = null): string
+    {
+        return $file
+            ? self::DEFAULT_PATH.$file
+            : self::DEFAULT_PATH.self::DEFAULT_IMAGE;
     }
 }

@@ -30,7 +30,7 @@ class AdController
     {
         $branches = (new Branch())->getBranches();
         $statuses = (new Status())->getStatuses();
-        loadView('dashboard/create-ad', ['branches.php' => $branches, 'statuses' => $statuses]);
+        loadView('dashboard/create-ad', ['branches' => $branches, 'statuses' => $statuses]);
     }
 
     public function store(): void
