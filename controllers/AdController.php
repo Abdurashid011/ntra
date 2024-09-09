@@ -109,4 +109,11 @@ class AdController
         $this->ads->deleteAds($id);
         redirect('/profile');
     }
+
+    public function search(): void
+    {
+        $searchPhrase = $_REQUEST['search_phrase'];
+        $ads = $this->ads->search($searchPhrase);
+        loadView('home', ['ads' => $ads]);
+    }
 }

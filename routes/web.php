@@ -6,7 +6,7 @@ use App\Router;
 use Controller\AdController;
 use Controller\BranchController;
 
-Router::get('/', fn() => loadController('admin'));
+Router::get('/', fn() => loadController('home'));
 
 Router::get('/ads/{id}', fn(int $id) => (new AdController())->show($id));
 Router::get('/ads/create', fn() => (new AdController())->create());
@@ -33,7 +33,9 @@ Router::get('/admin/users', fn() => (new \Controller\UserController())->getUsers
 
 Router::get('/logout', fn() => (new \Controller\AuthController())->logout());
 
-Router::get('/admin', fn() => loadView('dashboard/home'), 'auth');
+Router::get('/admin', fn() => loadView('dashboard/admin'), 'auth');
 Router::get('/profile', fn() => (new \Controller\UserController())->loadProfile(), 'auth');
+
+Router::get('/search', fn() => (new AdController())->search(), 'auth' );
 
 Router::errorResponse(404, 'Not Found');
