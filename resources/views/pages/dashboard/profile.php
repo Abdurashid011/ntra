@@ -211,4 +211,3 @@ loadPartials(path: "header", loadFromPublic: false);;
 loadPartials(path: "footer", loadFromPublic: false);
 
 ?>
-<?php

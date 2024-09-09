@@ -29,6 +29,7 @@ Router::post('/branch/create', fn() => (new BranchController())->create());
 Router::get('/branches', fn() => (new BranchController())->branches(), 'auth');
 
 Router::get('/admin/ads', fn() => (new BranchController())->homeAds(), 'auth');
+Router::get('/admin/users', fn() => (new \Controller\UserController())->getUsers(), 'auth');
 
 Router::get('/logout', fn() => (new \Controller\AuthController())->logout());
 

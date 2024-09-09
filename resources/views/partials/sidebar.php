@@ -27,7 +27,7 @@
                     <div class="sidebar-submenu">
                         <ul>
                             <li><a href="/profile">Profile</a></li>
-                            <li><a href="profile-setting.html">Profile Settings</a></li>
+                            <li><a href="/admin/users">Profile Settings</a></li>
                         </ul>
                     </div>
                 </li>

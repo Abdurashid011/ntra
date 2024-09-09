@@ -42,6 +42,13 @@ class User
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function getUsers(): false|array
+    {
+        $query = "SELECT * FROM users";
+        $stmt = $this->pdo->query($query);
+        return $stmt->fetchAll();
+    }
+
     public function getByUsername(string $username, string $password)
     {
         $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = :username AND password = :password");

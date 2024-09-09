@@ -6,6 +6,7 @@ namespace Controller;
 
 use App\Ads;
 use App\Session;
+use App\User;
 
 class UserController
 {
@@ -13,5 +14,11 @@ class UserController
     {
         $ads = (new Ads())->getUsersAds((new Session())->getId());
         loadView('profile', ['ads' => $ads]);
+    }
+
+    public function getUsers(): void
+    {
+        $users = (new User())->getUsers();
+        loadView('dashboard/users', ['users' => $users]);
     }
 }
