@@ -18,6 +18,14 @@ class AdController
         $this->ads = new Ads();
     }
 
+    public function home(): void
+    {
+        $ads = $this->ads->getAds();
+        $branches = (new Branch())->getBranches();
+
+        loadView('home', ['ads' => $ads, 'branches' => $branches]);
+    }
+
     public function show(int $id): void
     {
         $ad = $this->ads->getAd($id);

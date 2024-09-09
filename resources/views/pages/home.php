@@ -10,25 +10,25 @@ loadPartials('navbar');
                 <div class="relative mb-6">
                     <div class="grid grid-cols-1">
                         <form action="/search" method="get">
-                        <ul class="inline-block sm:w-fit w-full flex-wrap justify-center text-center p-4 bg-white dark:bg-slate-900 rounded-t-xl border-b dark:border-gray-800"
-                            id="myTab" data-tabs-toggle="#StarterContent" role="tablist">
-                            <li role="presentation" class="inline-block">
-                                <button class="px-6 py-2 text-base font-medium rounded-md w-full hover:text-green-600 transition-all duration-500 ease-in-out"
-                                        id="buy-home-tab" data-tabs-target="#buy-home" type="button" role="tab"
-                                        aria-controls="buy-home" aria-selected="true">Uy topish
-                                </button>
-                            </li>
-                            <li role="presentation" class="inline-block">
-                                <button class="px-6 py-2 text-base font-medium rounded-md w-full transition-all duration-500 ease-in-out"
-                                        id="sell-home-tab" data-tabs-target="#sell-home" type="button" role="tab"
-                                        aria-controls="sell-home" aria-selected="false">Sherik topish
-                                </button>
-                            </li>
-                        </ul>
+                            <ul class="inline-block sm:w-fit w-full flex-wrap justify-center text-center p-4 bg-white dark:bg-slate-900 rounded-t-xl border-b dark:border-gray-800"
+                                id="myTab" data-tabs-toggle="#StarterContent" role="tablist">
+                                <li role="presentation" class="inline-block">
+                                    <button class="px-6 py-2 text-base font-medium rounded-md w-full hover:text-green-600 transition-all duration-500 ease-in-out"
+                                            id="buy-home-tab" data-tabs-target="#buy-home" type="button" role="tab"
+                                            aria-controls="buy-home" aria-selected="true">Uy topish
+                                    </button>
+                                </li>
+                                <li role="presentation" class="inline-block">
+                                    <button class="px-6 py-2 text-base font-medium rounded-md w-full transition-all duration-500 ease-in-out"
+                                            id="sell-home-tab" data-tabs-target="#sell-home" type="button" role="tab"
+                                            aria-controls="sell-home" aria-selected="false">Sherik topish
+                                    </button>
+                                </li>
+                            </ul>
 
-                        <div id="StarterContent"
-                             class="p-6 bg-white dark:bg-slate-900 rounded-ss-none rounded-se-none md:rounded-se-xl rounded-xl shadow-md dark:shadow-gray-700">
-                            <div class="" id="buy-home" role="tabpanel" aria-labelledby="buy-home-tab">
+                            <div id="StarterContent"
+                                 class="p-6 bg-white dark:bg-slate-900 rounded-ss-none rounded-se-none md:rounded-se-xl rounded-xl shadow-md dark:shadow-gray-700">
+                                <div class="" id="buy-home" role="tabpanel" aria-labelledby="buy-home-tab">
                                     <div class="registration-form text-dark text-start">
                                         <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-6">
                                             <div>
@@ -44,17 +44,22 @@ loadPartials('navbar');
 
                                             <div>
                                                 <label for="buy-properties"
-                                                       class="form-label font-medium text-slate-900 dark:text-white">Select
-                                                    Categories:</label>
+                                                       class="form-label font-medium text-slate-900 dark:text-white">Filiallar
+                                                </label>
                                                 <div class="filter-search-form relative filter-border mt-2">
                                                     <i class="uil uil-estate icons"></i>
-                                                    <select class="form-select z-2" data-trigger name="choices-catagory"
+                                                    <select class="form-select z-2" data-trigger name="branch"
                                                             id="choices-catagory-buy"
                                                             aria-label="Default select example">
-                                                        <option>Houses</option>
-                                                        <option>Apartment</option>
-                                                        <option>Offices</option>
-                                                        <option>Townhome</option>
+                                                        <option value="">Filiallar</option>
+                                                        <?php
+                                                        /**
+                                                         * @var $branches
+                                                         */
+                                                        foreach ($branches as $branch) {
+                                                            echo "<option value='$branch->id'>$branch->name</option>";
+                                                        }
+                                                        ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -108,9 +113,9 @@ loadPartials('navbar');
                                             </div>
                                         </div><!--end grid-->
                                     </div><!--end container-->
-                            </div>
+                                </div>
 
-                            <div class="hidden" id="sell-home" role="tabpanel" aria-labelledby="sell-home-tab">
+                                <div class="hidden" id="sell-home" role="tabpanel" aria-labelledby="sell-home-tab">
                                     <div class="registration-form text-dark ltr:text-start rtl:text-end">
                                         <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-6">
                                             <div>
@@ -190,9 +195,9 @@ loadPartials('navbar');
                                             </div>
                                         </div><!--end grid-->
                                     </div><!--end container-->
-                            </div>
+                                </div>
 
-                            <div class="hidden" id="rent-home" role="tabpanel" aria-labelledby="rent-home-tab">
+                                <div class="hidden" id="rent-home" role="tabpanel" aria-labelledby="rent-home-tab">
                                     <div class="registration-form text-dark ltr:text-start rtl:text-end">
                                         <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-6">
                                             <div>
@@ -272,9 +277,9 @@ loadPartials('navbar');
                                             </div>
                                         </div><!--end grid-->
                                     </div><!--end container-->
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
                     </div>
                     <!--end grid-->
                 </div>
