@@ -8,6 +8,7 @@ loadPartials(path: 'header', loadFromPublic: false);
  * @var array $ads
  */
 
+
 ?>
 <div class="page-wrapper toggled">
     <?php

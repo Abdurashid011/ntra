@@ -1,7 +1,7 @@
 <nav id="topnav" class="defaultscroll is-sticky">
     <div class="container relative">
         <!-- Start Logo container-->
-        <a class="logo" href="index.html">
+        <a class="logo" href="/">
                     <span class="inline-block dark:hidden">
                         <img src="assets/images/logo-dark.png" class="l-dark" height="24" alt="">
                         <img src="assets/images/logo-light.png" class="l-light" height="24" alt="">

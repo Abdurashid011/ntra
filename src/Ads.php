@@ -127,27 +127,36 @@ class Ads
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function search(string $searchPhrase, int|null $branch = null): false|array
+    public function superSearch(
+        string   $searchPhrase,
+        int|null $searchBranch = null,
+        int      $searchMinPrice = 0,
+        int      $searchMaxPrice = PHP_INT_MAX
+    ): false|array
     {
-        $searchPhrase = "%$searchPhrase%";
         $query = "SELECT *, 
-                        ads.id AS id, 
-                        ads.address AS address, 
+                        ads.id AS id,
+                        ads.address AS address,
                         ads_image.name AS image
-              FROM ads
-                    JOIN branch ON branch.id = ads.branch_id
-                    LEFT JOIN ads_image ON ads.id = ads_image.ads_id
-              WHERE (title LIKE :searchPhrase
-                OR ads.description LIKE :searchPhrase)";
-        if ($branch) {
-            $query .= " AND branch_id = :branch";
-            $stmt = $this->pdo->prepare($query);
-            $stmt->bindParam(':branch', $branch);
-        } else {
-            $stmt = $this->pdo->prepare($query);
+                 FROM ads
+                     JOIN branch ON branch.id = ads.branch_id
+                     LEFT JOIN ads_image ON ads.id = ads_image.ads_id
+                WHERE (title LIKE :searchPhrase
+                OR ads.description LIKE :searchPhrase) 
+                AND price BETWEEN :minPrice AND :maxPrice";
+        $params = [
+            ':searchPhrase' => "%$searchPhrase%",
+            ':minPrice' => $searchMinPrice,
+            ':maxPrice' => $searchMaxPrice
+        ];
+
+        if ($searchBranch) {
+            $query .= " AND branch_id = :searchBranch";
+            $params[':searchBranch'] = $searchBranch;
         }
-        $stmt->bindParam(':searchPhrase', $searchPhrase);
-        $stmt->execute();
+
+        $stmt = $this->pdo->prepare($query);
+        $stmt->execute($params);
         return $stmt->fetchAll();
     }
 }
