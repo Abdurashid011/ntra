@@ -28,12 +28,14 @@ Router::get('/branch/create', fn() => loadView('dashboard/create-branch'), 'auth
 Router::post('/branch/create', fn() => (new BranchController())->create());
 Router::get('/branches', fn() => (new BranchController())->branches(), 'auth');
 
+Router::get('/admin', fn() => loadView('dashboard/admin'), 'auth');
 Router::get('/admin/ads', fn() => (new BranchController())->homeAds(), 'auth');
-Router::get('/admin/users', fn() => (new UserController())->getUsers(), 'auth');
+Router::get('/admin/users', fn() => (new UserController())->index(), 'auth');
+Router::get('/admin/users/{id}', fn(int $id) => (new UserController())->show($id), 'auth');
+Router::get('/admin/users/update/{id}', fn(int $id) => (new UserController())->update($id), 'auth');
 
 Router::get('/logout', fn() => (new AuthController())->logout());
 
-Router::get('/admin', fn() => loadView('dashboard/admin'), 'auth');
 Router::get('/profile', fn() => (new UserController())->loadProfile(), 'auth');
 
 Router::get('/search', fn() => (new AdController())->search(), 'auth' );

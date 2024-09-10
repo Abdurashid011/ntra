@@ -16,9 +16,23 @@ class UserController
         loadView('profile', ['ads' => $ads]);
     }
 
-    public function getUsers(): void
+    public function index(): void
     {
         $users = (new User())->getUsers();
-        loadView('dashboard/users', ['users' => $users]);
+        loadView('dashboard/users', ['users' => (new User())->getUsers()]);
+    }
+
+    public function show(int $id): void
+    {
+        $user = (new User())->getUser($id);
+        $ads  = (new Ads())->getUsersAds((new Session())->getId());
+
+        loadView('profile-info', ['user' => $user, 'ads' => $ads]);
+    }
+
+    public function update(int $id): void
+    {
+        $user = (new User())->getUser($id);
+        loadView('edit-profile', ['user' => $user]);
     }
 }
