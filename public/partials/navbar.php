@@ -50,7 +50,7 @@
 
                 <li><a href="/branches" class="sub-menu-item">Filallar</a></li>
 
-                <li><a href="sell.html" class="sub-menu-item">Sell</a></li>
+                <li><a href="/ads/create" class="sub-menu-item">E'lon qo'shish</a></li>
 
                 <li class="has-submenu parent-parent-menu-item">
                     <a href="javascript:void(0)">Listing</a><span class="menu-arrow"></span>
