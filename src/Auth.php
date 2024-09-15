@@ -17,28 +17,27 @@ class Auth
 
     public function login(string $username, string $password): void
     {
+        // Get user or fail
         $user = (new User())->getByUsername($username, $password);
 
+        // Get users role
         $query = "SELECT users.*, user_roles.role_id
-              FROM users
-              JOIN user_roles ON users.id = user_roles.user_id
-              WHERE users.id = :id";
+                  FROM users
+                      JOIN user_roles ON users.id = user_roles.user_id
+                  WHERE id = $user->id";
 
-        $stmt = $this->pdo->prepare($query);
-        $stmt->execute(['id' => $user->id]);
-
-        $userWithRoles = $stmt->fetch();
-
-        if ($userWithRoles && $userWithRoles->role_id === Role::ADMIN) {
-            redirect('/admin');
-        }
+        $userWithRoles = $this->pdo->query($query)->fetch();
 
         if ($userWithRoles) {
             $_SESSION['user'] = [
                 'username' => $userWithRoles->username,
-                'id'       => $userWithRoles->id,
-                'role'     => $userWithRoles->role_id
+                'id' => $userWithRoles->id,
+                'role' => $userWithRoles->role_id
             ];
+
+            if ($userWithRoles->role_id === Role::ADMIN) {
+                redirect('/admin');
+            }
 
             unset($_SESSION['message']['error']);
             redirect('/');
