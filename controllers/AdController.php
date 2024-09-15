@@ -48,8 +48,9 @@ class AdController
         $price = isset($_POST['price']) ? (float)$_POST['price'] : 0.0;
         $address = $_POST['address'] ?? '';
         $rooms = isset($_POST['rooms']) ? (int)$_POST['rooms'] : 0;
+        $gender = isset($_POST['gender']) ? (string)$_POST['gender'] : 0;
 
-        if ($title && $description && $price && $address && $rooms) {
+        if ($title && $description && $price && $address && $rooms && $gender) {
             $newAdsId = $this->ads->createAds(
                 title: $title,
                 description: $description,
@@ -58,7 +59,8 @@ class AdController
                 branch_id: (int)$_POST['branch_id'],
                 address: $address,
                 price: $price,
-                rooms: $rooms
+                rooms: $rooms,
+                gender: $gender
             );
 
             if ($newAdsId) {
@@ -77,7 +79,6 @@ class AdController
 
             return;
         }
-
         echo "Iltimos, barcha maydonlarni to'ldiring!";
     }
 
@@ -107,7 +108,8 @@ class AdController
             branch_id: (int)($_POST['branch_id']),
             address: $_POST['address'],
             price: (float)$_POST['price'],
-            rooms: (int)$_POST['rooms']
+            rooms: (int)$_POST['rooms'],
+            gender: $_POST['gender']
         );
         redirect('/profile');
     }

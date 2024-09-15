@@ -19,8 +19,8 @@ class BranchController
 
     public function create(): void
     {
-        $title       = $_POST['name'];
-        $address     = $_POST['address'];
+        $title = $_POST['name'];
+        $address = $_POST['address'];
         $this->branch->createBranch($title, $address);
         redirect('/branches');
     }
@@ -31,11 +31,17 @@ class BranchController
         loadView('dashboard/branches', ['branches' => $branches]);
     }
 
-    public function homeAds():void
+    public function homeAds(): void
     {
         $ads = (new Ads())->getAds();
 
         loadView('dashboard/home-ads', ['ads' => $ads]);
+    }
+
+    public function show(int $id): void
+    {
+        $branches = (new Branch())->getBranch($id);
+        loadView('dashboard/branch', ['branches' => $branches]);
     }
 
 }

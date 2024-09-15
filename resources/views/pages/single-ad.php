@@ -114,16 +114,15 @@ loadPartials('navbar');
                         </div>
                     </div>
 
+                    <?php if ((new \App\Session())->getRoleId() === 1 || (new \App\Session())->getId() === $ad->user_id): ?>
                     <div class="mt-12 text-center">
-                        <h3 class="mb-6 text-xl leading-normal font-medium text-black dark:text-white">Have Question ?
-                            Get in touch!</h3>
-
                         <div class="mt-6">
                             <a href="/ads/delete/<?= $ad->id ?>"
                                class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md"><i
-                                        class="uil uil-phone align-middle me-2"></i>Delete</a>
+                                        class="uil uil-phone align-middle me-2"></i>O'chirish</a>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

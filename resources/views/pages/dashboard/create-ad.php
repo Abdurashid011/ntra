@@ -28,7 +28,7 @@ if (in_array('create', $uri)) {
                 <div class="layout-specing">
                     <!-- Start Content -->
                     <div class="md:flex justify-between items-center">
-                        <h5 class="text-lg font-semibold">Add Property</h5>
+                        <h5 class="text-lg font-semibold">E'lon qo'shish</h5>
 
                         <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
                             <li class="inline-block capitalize text-[16px] font-medium duration-500 dark:text-white/70 hover:text-green-600 dark:hover:text-white">
@@ -36,7 +36,7 @@ if (in_array('create', $uri)) {
                             <li class="inline-block text-base text-slate-950 dark:text-white/70 mx-0.5 ltr:rotate-0 rtl:rotate-180">
                                 <i class="mdi mdi-chevron-right"></i></li>
                             <li class="inline-block capitalize text-[16px] font-medium text-green-600 dark:text-white"
-                                aria-current="page">Add Property
+                                aria-current="page">E'lon qo'shish
                             </li>
                         </ul>
                     </div>
@@ -48,8 +48,8 @@ if (in_array('create', $uri)) {
                                     <p class="font-medium mb-4">Upload your property image here, Please click "Upload
                                         Image" Button.</p>
                                     <div class="preview-box flex justify-center rounded-md shadow dark:shadow-gray-800 overflow-hidden bg-gray-50 dark:bg-slate-800 text-slate-400 p-2 text-center small w-auto max-h-60">
-                                        Supports JPG, PNG and MP4 videos. Max file size : 10MB.
-                                    </div>
+                                        Qabul qilinadigan kengaytmalar: JPG, PNG
+                                        Hajm bo'yicha cheklov: 10MB                                    </div>
                                     <input form="ads-create" type="file" id="input-file" name="image" accept="image/*"
                                            onchange={handleChange()} hidden>
                                     <label class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer"
@@ -66,6 +66,17 @@ if (in_array('create', $uri)) {
                                             <label for="title" class="font-medium">Sarlavha</label>
                                             <input name="title" id="title" type="text" class="form-input mt-2"
                                                    placeholder="Sarlavha" value="<?= $ad?->title ?>">
+                                        </div>
+
+                                        <div class="col-span-12">
+                                            <label for="branch" class="font-medium">Jinsi:</label>
+                                            <div class="form-icon relative mt-2">
+                                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0"
+                                                        id="gender" name="gender">
+                                                    <option value="erkak">Erkak</option>
+                                                    <option value="ayol">Ayol</option>
+                                                </select>
+                                            </div>
                                         </div>
 
                                         <div class="md:col-span-4 col-span-12">
@@ -133,7 +144,8 @@ if (in_array('create', $uri)) {
 
                                         <div class="md:col-span-4 col-span-12">
                                             <label for="branch2" class="font-medium">Status</label>
-                                            <select name="status_id" id="branch2" class="form-input ps-11 mt-2" style="width: 150px;">
+                                            <select name="status_id" id="branch2" class="form-input ps-11 mt-2"
+                                                    style="width: 150px;">
                                                 <?php foreach ($statuses as $status) : ?>
                                                     <option value="<?= $status->id; ?>">
                                                         <?php echo $status->name; ?>

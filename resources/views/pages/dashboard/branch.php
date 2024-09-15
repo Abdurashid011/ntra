@@ -5,69 +5,70 @@ loadPartials(path: 'header', loadFromPublic: false);
 /**
  * @var $branches
  */
+//dd($branches);
 ?>
-    <body class="font-body text-base text-black dark:text-white dark:bg-slate-900">
-
 
 <div class="page-wrapper toggled">
     <?php loadPartials(path: 'sidebar', loadFromPublic: false); ?>
 
     <main class="page-content bg-gray-50 dark:bg-slate-800">
-        <?php loadPartials('top-header', loadFromPublic: false) ?>
-
+        <!-- Top Header -->
+        <?php loadPartials(path: 'top-header', loadFromPublic: false); ?>
+        <!-- Top Header -->
 
         <div class="container-fluid relative px-3">
             <div class="layout-specing">
                 <!-- Start Content -->
                 <div class="md:flex justify-between items-center">
-                    <h5 class="text-lg font-semibold">Filiallar</h5>
-
-                    <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-                        <li class="inline-block capitalize text-[16px] font-medium duration-500 dark:text-white/70 hover:text-green-600 dark:hover:text-white">
-                            <a href="/admin">Dashboard</a></li>
-                        <li class="inline-block text-base text-slate-950 dark:text-white/70 mx-0.5 ltr:rotate-0 rtl:rotate-180">
-                            <i class="mdi mdi-chevron-right"></i></li>
-                        <li class="inline-block capitalize text-[16px] font-medium text-green-600 dark:text-white"
-                            aria-current="page">Filiallar
-                        </li>
-                    </ul>
+                    <h5 class="text-lg font-semibold">Branches</h5>
                 </div>
-
                 <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-6">
-                    <?php
-                    foreach ($branches as $branch):?>
+                    <?php foreach ($branches as $branch): ?>
                         <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                             <div class="relative">
-                                <img src="<?php echo \App\Image::show($branch?->image) ?>" alt="">
+                                <?php if ($branch->image === 'default.png'): ?>
+                                    <img src="/assets/images/ads/<?= $branch->image; ?>" alt="">
+                                <?php else: ?>
+                                    <img src="/assets/images/ads/<?= $branch->image; ?>" alt="">
+                                <?php endif; ?>
 
-                                <div class="absolute top-4 end-4">
-                                    <a href="javascript:void(0)"
-                                       class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600"><i
-                                                class="mdi mdi-heart text-[20px]"></i></a>
-                                </div>
+                                <?php if ((new \App\Session())->getRoleId() === 1 || (new \App\Session())->getId() === $branch->user_id): ?>
+                                    <div class="absolute top-4 end-4">
+                                        <a href="/ads/update/<?= $branch->id ?>"
+                                           class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-black dark:text-white">
+                                            <i class="mdi mdi-pencil text-[20px]"></i>
+                                        </a>
+                                    </div>
+                                <?php endif; ?>
+
                             </div>
 
                             <div class="p-6">
                                 <div class="pb-6">
-                                    <a href="/admin/branch/<?= $branch->id ?>"
-                                       class="text-lg hover:text-green-600 font-medium ease-in-out duration-500"><?= $branch->name; ?></a>
+                                    <a href="/ads/<?= $branch->id ?>"
+                                       class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">
+                                        <?= $branch->description ?>
+                                    </a>
+
                                 </div>
 
                                 <ul class="pt-6 flex justify-between items-center list-none">
                                     <li>
-                                        <span class="text-slate-400">Manzil</span>
+                                        <span class="text-slate-400">Expired_ad</span>
+                                        <p class="text-lg font-medium"><?= $branch->created_at ?></p>
+                                    </li>
+                                </ul>
+                                <ul class="pt-6 flex justify-between items-center list-none">
+                                    <li>
+                                        <span class="text-slate-400">Address</span>
                                         <p class="text-lg font-medium"><?= $branch->address ?></p>
                                     </li>
-
                                 </ul>
                             </div>
                         </div><!--end property content-->
-                    <?php
-                    endforeach; ?>
-                </div><!--en grid-->
 
-
-                <!-- End Content -->
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div><!--end container-->
 
@@ -78,8 +79,8 @@ loadPartials(path: 'header', loadFromPublic: false);
                     <div class="sm:text-start text-center mx-md-2">
                         <p class="mb-0 text-slate-400">©
                             <script>document.write(new Date().getFullYear())</script>
-                            NTRA. Design with <i class="mdi mdi-heart text-red-600"></i> by <a
-                                    href="https://najottalim.uz" target="_blank" class="text-reset">PHP Bootcamp N1</a>.
+                            Hously. Design with <i class="mdi mdi-heart text-red-600"></i> by <a
+                                    href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.
                         </p>
                     </div><!--end col-->
                 </div><!--end grid-->
@@ -87,9 +88,7 @@ loadPartials(path: 'header', loadFromPublic: false);
         </footer><!--end footer-->
         <!-- End -->
     </main>
-    <!--End page-content" -->
 </div>
-<!-- page-wrapper -->
 
 <!-- Switcher -->
 <div class="fixed top-[30%] -end-2 z-50">
@@ -114,6 +113,14 @@ loadPartials(path: 'header', loadFromPublic: false);
 </div>
 <!-- LTR & RTL Mode Code -->
 
-<?php
-loadPartials(path: 'footer', loadFromPublic: false);
-?>
+<!-- JAVASCRIPTS -->
+<script src="/dashboard/assets/libs/jsvectormap/jsvectormap.min.js"></script>
+<script src="/dashboard/assets/libs/jsvectormap/maps/world.js"></script>
+<script src="/dashboard/assets/js/jsvectormap.init.js"></script>
+<script src="/dashboard/assets/libs/apexcharts/apexcharts.min.js"></script>
+<script src="/dashboard/assets/libs/feather-icons/feather.min.js"></script>
+<script src="/dashboard/assets/libs/simplebar/simplebar.min.js"></script>
+<script src="/dashboard/assets/js/plugins.init.js"></script>
+<script src="/dashboard/assets/js/app.js"></script>
+<!-- JAVASCRIPTS -->
+</body>

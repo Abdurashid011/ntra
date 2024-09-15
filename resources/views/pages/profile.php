@@ -1,6 +1,10 @@
 <?php
 
 loadPartials(path: 'header', loadFromPublic: false);
+
+/**
+ * @var $ads
+ */
 ?>
 
     <div class="page-wrapper toggled">
@@ -128,9 +132,6 @@ loadPartials(path: 'header', loadFromPublic: false);
 
                                     <div class="grid lg:grid-cols-3 md:grid-cols-2 mt-6 gap-6">
                                         <?php
-                                        /**
-                                         * @var $ads
-                                         */
                                         foreach ($ads as $ad):?>
                                             <div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
                                                 <div class="relative">
@@ -154,17 +155,17 @@ loadPartials(path: 'header', loadFromPublic: false);
                                                     <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
                                                         <li class="flex items-center me-4">
                                                             <i class="mdi mdi-compress-arrows text-2xl me-2 text-green-600"></i>
-                                                            <span>8000sqf</span>
+                                                            <span><?= $ad->address ?></span>
                                                         </li>
 
                                                         <li class="flex items-center me-4">
                                                             <i class="mdi mdi-bed-double text-2xl me-2 text-green-600"></i>
-                                                            <span>4 Beds</span>
+                                                            <span><?= $ad->rooms?>-Rooms</span>
                                                         </li>
 
                                                         <li class="flex items-center">
-                                                            <i class="mdi mdi-bath text-2xl me-2 text-green-600"></i>
-                                                            <span>4 Baths</span>
+                                                            <i class="uil uil-bath text-2xl me-2 text-green-600"></i>
+                                                            <span><?= $ad->gender ?></span>
                                                         </li>
                                                     </ul>
 

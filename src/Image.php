@@ -9,7 +9,7 @@ use PDO;
 class Image
 {
     const string DEFAULT_IMAGE = 'default.jpg';
-    const string DEFAULT_PATH  = '/assets/images/ads/';
+    const string DEFAULT_PATH = '/assets/images/ads/';
     private PDO $pdo;
 
     public function __construct()
@@ -37,8 +37,8 @@ class Image
 
 
         // Extract file name and path
-        $name       = $_FILES['image']['name'];
-        $path       = $_FILES['image']['tmp_name'];
+        $name = $_FILES['image']['name'];
+        $path = $_FILES['image']['tmp_name'];
         $uploadPath = basePath("/public/assets/images/ads");
 
         // Check if upload directory exists
@@ -47,7 +47,7 @@ class Image
         }
 
         // Rename filename
-        $fileName     = uniqid().'___'.$name;
+        $fileName = uniqid() . '___' . $name;
         $fullFilePath = "$uploadPath/$fileName";
 
         // Upload file
@@ -69,7 +69,7 @@ class Image
         return $stmt->fetch();
     }
 
-    public function updateImage(int $id,string $name ): bool
+    public function updateImage(int $id, string $name): bool
     {
         $stmt = $this->pdo->prepare("UPDATE ads_image SET name = :name WHERE id = :id");
         $stmt->bindParam(':id', $id);
@@ -80,7 +80,7 @@ class Image
     public static function show(string|null $file = null): string
     {
         return $file
-            ? self::DEFAULT_PATH.$file
-            : self::DEFAULT_PATH.self::DEFAULT_IMAGE;
+            ? '/assets/images/ads/' . $file
+            : self::DEFAULT_PATH . self::DEFAULT_IMAGE;
     }
 }

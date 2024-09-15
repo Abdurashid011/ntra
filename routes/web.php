@@ -11,7 +11,7 @@ use Controller\UserController;
 Router::get('/', fn() => (new AdController())->home());
 
 Router::get('/ads/{id}', fn(int $id) => (new AdController())->show($id));
-Router::get('/ads/create', fn() => (new AdController())->create());
+Router::get('/ads/create', fn() => (new AdController())->create(), 'auth');
 Router::post('/ads/create', fn() => (new AdController())->store());
 Router::get('/ads/update/{id}', fn(int $id) => (new AdController())->update($id));
 Router::patch('/ads/update/{id}', fn(int $id) => (new AdController())->edit($id));
@@ -33,6 +33,8 @@ Router::get('/admin/ads', fn() => (new BranchController())->homeAds(), 'auth');
 Router::get('/admin/users', fn() => (new UserController())->index(), 'auth');
 Router::get('/admin/users/{id}', fn(int $id) => (new UserController())->show($id), 'auth');
 Router::get('/admin/users/update/{id}', fn(int $id) => (new UserController())->update($id), 'auth');
+
+Router::get('/admin/branch/{id}', fn(int $id) => (new BranchController())->show($id));
 
 Router::get('/logout', fn() => (new AuthController())->logout());
 

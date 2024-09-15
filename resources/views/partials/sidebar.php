@@ -6,9 +6,11 @@
         </div>
 
         <ul class="sidebar-menu border-t border-white/10" data-simplebar style="height: calc(100% - 70px);">
-            <li>
-                <a href="/admin"><i class="mdi mdi-chart-bell-curve-cumulative me-2"></i>Dashboard</a>
-            </li>
+            <?php if ((new \App\Session())->getRoleId() === 1): ?>
+                <li>
+                    <a href="/admin"><i class="mdi mdi-chart-bell-curve-cumulative me-2"></i>Dashboard</a>
+                </li>
+            <?php endif; ?>
 
             <li class="sidebar-dropdown">
                 <a href="javascript:void(0)"><i class="mdi mdi-account-edit me-2"></i> E'lonlar</a>
@@ -20,23 +22,25 @@
                 </div>
             </li>
 
-            <li>
-                <a href="/branch/create"><i class="mdi mdi-home-city me-2"></i>Filial yaratish</a>
-            </li>
+            <?php if ((new \App\Session())->getRoleId() === 1): ?>
+                <li>
+                    <a href="/branch/create"><i class="mdi mdi-home-city me-2"></i>Filial yaratish</a>
+                </li>
 
-            <li>
-                <a href="/branches"><i class="mdi mdi-home-heart me-2"></i>Filiallarni ko'rish</a>
-            </li>
+                <li>
+                    <a href="/branches"><i class="mdi mdi-home-heart me-2"></i>Filiallarni ko'rish</a>
+                </li>
 
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="mdi mdi-account-edit me-2"></i>Foydalanuvchilar</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        <li><a href="/profile">Profile</a></li>
-                        <li><a href="/admin/users">Foydalanuvchilar</a></li>
-                    </ul>
-                </div>
-            </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-account-edit me-2"></i>Foydalanuvchilar</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="/profile">Profile</a></li>
+                            <li><a href="/admin/users">Foydalanuvchilar</a></li>
+                        </ul>
+                    </div>
+                </li>
+            <?php endif; ?>
         </ul>
         <!-- sidebar-menu  -->
     </div>

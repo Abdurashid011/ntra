@@ -17,7 +17,7 @@ loadPartials('navbar');
                                         <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-6">
                                             <div>
                                                 <label class="form-label font-medium text-slate-900 dark:text-white">
-                                                    Search: <span class="text-red-600">*</span></label>
+                                                    Qidiruv: <span class="text-red-600">*</span></label>
                                                 <div class="filter-search-form relative filter-border mt-2">
                                                     <i class="uil uil-search icons"></i>
                                                     <input name="search_phrase" type="text" id="search_phrase"
@@ -118,17 +118,17 @@ loadPartials('navbar');
                             <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
                                 <li class="flex items-center me-4">
                                     <i class="uil uil-compress-arrows text-2xl me-2 text-green-600"></i>
-                                    <span>8000sqf</span>
+                                    <span><?= $ad->address ?></span>
                                 </li>
 
                                 <li class="flex items-center me-4">
                                     <i class="uil uil-bed-double text-2xl me-2 text-green-600"></i>
-                                    <span>4 Beds</span>
+                                    <span><?= $ad->rooms ?>-Rooms</span>
                                 </li>
 
                                 <li class="flex items-center">
                                     <i class="uil uil-bath text-2xl me-2 text-green-600"></i>
-                                    <span>4 Baths</span>
+                                    <span><?= $ad->gender ?></span>
                                 </li>
                             </ul>
 
